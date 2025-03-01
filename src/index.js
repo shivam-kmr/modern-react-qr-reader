@@ -227,9 +227,17 @@ module.exports = class Reader extends Component {
     const { preview, canvas, img } = this.els
 
     // Get image/video dimensions
-    let width = Math.floor(legacyMode ? img.naturalWidth : preview.videoWidth)
-    let height = Math.floor(legacyMode ? img.naturalHeight : preview.videoHeight)
-
+    let width = null, height = null;
+    if(legacyMode){
+      width = Math.floor(img.naturalWidth);
+      height = Math.floor(img.naturalHeight);
+    }else if(preview) {
+      width = Math.floor(preview.videoWidth)
+      height = Math.floor(preview.videoHeight)
+    }else {
+      width = 0
+      height = 0
+    }
     // Canvas draw offsets
     let hozOffset = 0
     let vertOffset = 0
