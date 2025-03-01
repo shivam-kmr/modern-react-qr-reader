@@ -225,7 +225,7 @@ module.exports = class Reader extends Component {
       onLoad({ mirrorVideo, streamLabel })
     }
 
-    if (typeof delay == 'number') {
+    if (typeof delay == 'number' && this.worker) {
       this.timeout = setTimeout(this.check, delay)
     }
 
